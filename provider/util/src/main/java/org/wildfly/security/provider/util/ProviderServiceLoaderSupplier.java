@@ -28,6 +28,8 @@ import java.util.ServiceConfigurationError;
 import java.util.ServiceLoader;
 import java.util.Set;
 
+import org.wildfly.security.provider.util._private.ElytronMessages;
+
 /**
  * A supplier which uses a service loader to find all {@link Provider} instances that aren't in the list of
  * installed security providers and returns them as an array. The result is then cached.
@@ -49,16 +51,19 @@ public class ProviderServiceLoaderSupplier extends ServiceLoaderSupplier<Provide
     }
 
     Provider[] loadServices(final Class<Provider> service, final ClassLoader classLoader) {
+        ElytronMessages.log.debug("loadServices call - classLoader - " + classLoader.toString());
         Provider[] providers = INSTALLED_PROVIDERS.get();
         Set<Class<?>> installedProvidersSet = new HashSet<>((providers != null ? providers.length : 0) + (elytronProviderStaticallyAdded ? 15 : 0));
         if (elytronProviderStaticallyAdded) {
             for (Class elytronProviderClassName : ProviderFactory.getWildflyElytronProviderClasses(ProviderServiceLoaderSupplier.class.getClassLoader())) {
                 installedProvidersSet.add(elytronProviderClassName);
+                ElytronMessages.log.debug("installedProvidersSet                     " + elytronProviderClassName.getName());
             }
         }
         if (providers != null) {
             for (int i = 0; i < providers.length; i++) {
                 installedProvidersSet.add(providers[i].getClass());
+                ElytronMessages.log.debug("installedProvidersSet                     " + providers[i].getClass().getName());
             }
         }
         ArrayList<Provider> list = new ArrayList<>();
@@ -66,9 +71,13 @@ public class ProviderServiceLoaderSupplier extends ServiceLoaderSupplier<Provide
         Iterator<Provider> iterator = loader.iterator();
         for (;;) try {
             if (! iterator.hasNext()) {
+                for (Provider p : list) {
+                    ElytronMessages.log.debug("loadServices() return                     " + p.getClass().getName());
+                }
                 return list.toArray(new Provider[list.size()]);
             }
             Provider provider = iterator.next();
+            ElytronMessages.log.debug("ServiceLoader.load(service, classLoader)  " + provider.getClass().getName());
             if (! installedProvidersSet.contains(provider.getClass())) {
                 list.add(provider);
             }
