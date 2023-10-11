@@ -205,7 +205,7 @@ Possible values are: <code>UTF-8</code>, <code>UTF-16BE</code>, <code>UTF-16LE</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;file-audit-log name="local-file" path="audit.log" relative-to="jboss.home.dir" synchronized="false" autoflush="true" format="JSON" encoding="UTF-16"/&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;file-audit-log name="local-file" path="audit.log" relative-to="jboss.server.log.dir" synchronized="false" autoflush="true" format="JSON" encoding="UTF-16"/&gt;
 ...
 &lt;periodic-rotating-file-audit-log name="periodic-rotating" path="audit.log" relative-to="jboss.server.log.dir" format="JSON" encoding="US-ASCII" suffix="y-M-d"/&gt;
 ...
@@ -216,7 +216,15 @@ Possible values are: <code>UTF-8</code>, <code>UTF-16BE</code>, <code>UTF-16LE</
 <h2 id="example"><a class="anchor" href="#example"></a>Example</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can test it by adding the above configuration in the Elytron subsystem and use any of the examples <a href="https://github.com/wildfly-security-incubator/elytron-examples/tree/master/">here</a>.</p>
+<p>You can test it by adding the above configuration in the Elytron subsystem and use any of the examples <a href="https://github.com/wildfly-security-incubator/elytron-examples/tree/main/">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following CLI command adds a new audit log file with <code>UTF-16</code> encoding:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">/subsystem=elytron/file-audit-log="local-file-UTF-16":add(path="audit-UTF-16.log", relative-to="jboss.server.log.dir", format="JSON", synchronized="false", encoding="UTF-16")</code></pre>
+</div>
 </div>
 </div>
 </div>
