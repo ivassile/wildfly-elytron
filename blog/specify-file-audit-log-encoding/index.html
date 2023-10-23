@@ -217,7 +217,7 @@ Possible values are: <code>UTF-8</code>, <code>UTF-16BE</code>, <code>UTF-16LE</
 <div class="sectionbody">
 <div class="paragraph">
 <p>This example will show how to deploy simple web application, update the security domain configuration to enable audit logging and inspect the resulting file.
-We will use the simple-webapp example which can be found <a href="https://github.com/wildfly-security-incubator/elytron-examples/tree/main/" class="bare">https://github.com/wildfly-security-incubator/elytron-examples/tree/main/</a> [here].</p>
+We will use the simple-webapp example which can be found <a href="https://github.com/wildfly-security-incubator/elytron-examples/tree/main">here</a>.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -233,12 +233,8 @@ We will use the simple-webapp example which can be found <a href="https://github
 cd elytron-examples</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Server configuration</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Server configuration</strong></p>
 </div>
 <div class="paragraph">
 <p>The following set of instructions will update the security domain configuration to enable audit logging in WildFly server. We will be deploying a simple web application from <code>elytron-examples/simple-webapp</code>.</p>
@@ -269,15 +265,11 @@ This will connect to the server, after which you can proceed to configuring the 
 reload</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Deploying the application</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Deploying the application</strong></p>
 </div>
 <div class="paragraph">
-<p>We’re going to make use of the <code><code>simple-webapp</code></code> project. It can be deployed using the following commands:</p>
+<p>We’re going to make use of the <code>simple-webapp</code> project. It can be deployed using the following commands:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -286,28 +278,18 @@ reload</code></pre>
 mvn clean install wildfly:deploy</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Accessing the application</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Accessing the application</strong></p>
 </div>
 <div class="paragraph">
-<p>Try accessing the application using <a href="https://localhost:8443/simple-webapp" class="bare">https://localhost:8443/simple-webapp</a>
-Select <code><code>Access Secured Servlet</code></code> link and try to sing in using invalid credentials.</p>
+<p>Try accessing the application using <code><a href="https://localhost:8443/simple-webapp" class="bare">https://localhost:8443/simple-webapp</a></code>
+Select <code>Access Secured Servlet</code> link and try to sing in using invalid credentials.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Review the created audit log file for new events</p>
-<div class="literalblock">
-<div class="content">
-<pre>Open $SERVER_HOME/standalone/log/audit-UTF-16.log file which is UTF-16 encoded. You should find a log entry of ```SecurityAuthenticationFailedEvent```.</pre>
+<div class="paragraph">
+<p><strong>Review the audit log file for new events</strong></p>
 </div>
-</div>
-</li>
-</ul>
+<div class="paragraph">
+<p>Open <code>$SERVER_HOME/standalone/log/audit-UTF-16.log</code> file which is <code>UTF-16</code> encoded. You should find a log entry of <code>SecurityAuthenticationFailedEvent</code>.</p>
 </div>
 </div>
 </div>

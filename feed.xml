@@ -5,7 +5,7 @@
         <title>WildFly Elytron</title>
         <link>https://wildfly-security.github.io/wildfly-elytron</link>
         <description></description>
-        <lastBuildDate>Mon, 23 Oct 2023 03:21:21 +0000</lastBuildDate>
+        <lastBuildDate>Mon, 23 Oct 2023 03:35:46 +0000</lastBuildDate>
         
         <item>
             <title>Change the default encoding of the audit log file in WildFly 29</title>
