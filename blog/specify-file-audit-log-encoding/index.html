@@ -216,15 +216,98 @@ Possible values are: <code>UTF-8</code>, <code>UTF-16BE</code>, <code>UTF-16LE</
 <h2 id="example"><a class="anchor" href="#example"></a>Example</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can test it by adding the above configuration in the Elytron subsystem and use any of the examples <a href="https://github.com/wildfly-security-incubator/elytron-examples/tree/main/">here</a>.</p>
+<p>This example will show how to deploy simple web application, update the security domain configuration to enable audit logging and inspect the resulting file.
+We will use the simple-webapp example which can be found <a href="https://github.com/wildfly-security-incubator/elytron-examples/tree/main/" class="bare">https://github.com/wildfly-security-incubator/elytron-examples/tree/main/</a> [here].</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Clone the <code>elytron-examples</code> repo locally:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">git clone https://github.com/wildfly-security-incubator/elytron-examples
+
+cd elytron-examples</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Server configuration</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following set of instructions will update the security domain configuration to enable audit logging in WildFly server. We will be deploying a simple web application from <code>elytron-examples/simple-webapp</code>.</p>
+</div>
+<div class="paragraph">
+<p>Please navigate to the elytron server home directory and enter the following command.
+This will connect to the server, after which you can proceed to configuring the server.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$SERVER_HOME/bin/jboss-cli.sh --connect</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>The following CLI command adds a new audit log file with <code>UTF-16</code> encoding:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">/subsystem=elytron/file-audit-log="local-file-UTF-16":add(path="audit-UTF-16.log", relative-to="jboss.server.log.dir", format="JSON", synchronized="false", encoding="UTF-16")</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">/subsystem=elytron/file-audit-log="local-file-UTF-16":add(path="audit-UTF-16.log", relative-to="jboss.server.log.dir", format="JSON", synchronized="false", encoding="UTF-16")</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Add the file audit log to a security domain:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">/subsystem=elytron/security-domain="ApplicationDomain":write-attribute(name=security-event-listener , value="local-file-UTF-16")
+reload</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deploying the application</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We’re going to make use of the <code><code>simple-webapp</code></code> project. It can be deployed using the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cd $PATH_TO_ELYTRON_EXAMPLES/simple-webapp
+
+mvn clean install wildfly:deploy</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Accessing the application</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Try accessing the application using <a href="https://localhost:8443/simple-webapp" class="bare">https://localhost:8443/simple-webapp</a>
+Select <code><code>Access Secured Servlet</code></code> link and try to sing in using invalid credentials.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Review the created audit log file for new events</p>
+<div class="literalblock">
+<div class="content">
+<pre>Open $SERVER_HOME/standalone/log/audit-UTF-16.log file which is UTF-16 encoded. You should find a log entry of ```SecurityAuthenticationFailedEvent```.</pre>
+</div>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
