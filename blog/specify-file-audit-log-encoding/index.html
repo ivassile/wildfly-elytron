@@ -249,7 +249,9 @@ This will connect to the server, after which you can proceed to configuring the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">/subsystem=elytron/file-audit-log="local-file-UTF-16":add(path="audit-UTF-16.log", relative-to="jboss.server.log.dir", format="JSON", synchronized="false", encoding="UTF-16")</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">/subsystem=elytron/file-audit-log="local-file-UTF-16":add(path="audit-UTF-16.log", relative-to="jboss.server.log.dir", format="JSON", synchronized="false", encoding="UTF-16")
+
+reload</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -257,8 +259,7 @@ This will connect to the server, after which you can proceed to configuring the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">/subsystem=elytron/security-domain="ApplicationDomain":write-attribute(name=security-event-listener , value="local-file-UTF-16")
-reload</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">/subsystem=elytron/security-domain="ApplicationDomain":write-attribute(name=security-event-listener , value="local-file-UTF-16")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -278,7 +279,7 @@ mvn clean install wildfly:deploy</code></pre>
 <p><strong>Accessing the application</strong></p>
 </div>
 <div class="paragraph">
-<p>Try accessing the application using <code><a href="https://localhost:8443/simple-webapp" class="bare">https://localhost:8443/simple-webapp</a></code>
+<p>Try accessing the application using <code><a href="https://localhost:8443/simple-webapp" class="bare">https://localhost:8443/simple-webapp</a></code> .
 Select <code>Access Secured Servlet</code> link and try to sing in using invalid credentials.</p>
 </div>
 <div class="paragraph">
