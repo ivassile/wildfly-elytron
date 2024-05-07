@@ -5,7 +5,63 @@
         <title>WildFly Elytron</title>
         <link>https://wildfly-security.github.io/wildfly-elytron</link>
         <description></description>
-        <lastBuildDate>Wed, 28 Feb 2024 16:16:51 +0000</lastBuildDate>
+        <lastBuildDate>Tue, 07 May 2024 21:17:34 +0000</lastBuildDate>
+        
+        <item>
+            <title>Dynamic client SSL context that automatically delegates to different SSLContexts based on the host and port of the peer</title>
+            <link>
+                https://wildfly-security.github.io/wildfly-elytron/blog/dynamic-client-ssl-context/
+            </link>
+            <description>
+                WildFly 32 running at a community stability level or lower includes the ability to configure the dynamic SSL context. This dynamic SSL context delegates to other instances of SSL contexts that are selected based on the host and port of the peer. Prerequisites New dynamic-client-ssl-context resource Example configuration on the...
+            </description>
+            <pubDate>Tue, 07 May 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://wildfly-security.github.io/wildfly-elytron/blog/dynamic-client-ssl-context/
+            </guid>
+        </item>
+        
+        <item>
+            <title>Caching realm now automatically tries to authenticate users with the underlying realm if authentication with cached credentials fails</title>
+            <link>
+                https://wildfly-security.github.io/wildfly-elytron/blog/caching-security-realm-authenticate-with-underlying-realm-on-failure/
+            </link>
+            <description>
+                WildFly 32+ will automatically attempt to verify credentials with the underlying realm if an authentication fails with the cached credentials. If this authentication succeeds, the obsolete credential will be replaced with the updated credential. This functionality is useful if the credentials have been updated externally of WildFly. Caching security realm...
+            </description>
+            <pubDate>Thu, 02 May 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://wildfly-security.github.io/wildfly-elytron/blog/caching-security-realm-authenticate-with-underlying-realm-on-failure/
+            </guid>
+        </item>
+        
+        <item>
+            <title>Securing a WildFly Application Using OpenID Connect With Additional Scope Values</title>
+            <link>
+                https://wildfly-security.github.io/wildfly-elytron/blog/elytron-oidc-client-scope/
+            </link>
+            <description>
+                WildFly 32 includes the ability to add additional scope values when securing applications using OpenID Connect (OIDC). This new feature is available at the Preview stability level. OpenID Connect is an identity layer on top of the OAuth 2.0 protocol that makes it possible for a client to verify a...
+            </description>
+            <pubDate>Mon, 29 Apr 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://wildfly-security.github.io/wildfly-elytron/blog/elytron-oidc-client-scope/
+            </guid>
+        </item>
+        
+        <item>
+            <title>Trying Out An Upcoming Security Feature for WildFly on OpenShift</title>
+            <link>
+                https://wildfly-security.github.io/wildfly-elytron/blog/in-progress-wildfly-feature-on-openshift/
+            </link>
+            <description>
+                A future release of WildFly will include the ability to add additional scope values when securing applications using OpenID Connect (OIDC). This blog post demonstrates how to secure a WildFly application using OpenID Connect and configure scope values to request additional claims using an in-progress version of the feature. This...
+            </description>
+            <pubDate>Thu, 07 Mar 2024 00:00:00 +0000</pubDate>
+            <guid>
+                https://wildfly-security.github.io/wildfly-elytron/blog/in-progress-wildfly-feature-on-openshift/
+            </guid>
+        </item>
         
         <item>
             <title>Vlog: Securing WildFly Apps with Okta on OpenShift</title>
@@ -88,62 +144,6 @@
             <pubDate>Wed, 15 Nov 2023 00:00:00 +0000</pubDate>
             <guid>
                 https://wildfly-security.github.io/wildfly-elytron/blog/wildfly-oidc-identity-propagation/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Change the default encoding of the audit log file in WildFly</title>
-            <link>
-                https://wildfly-security.github.io/wildfly-elytron/blog/specify-file-audit-log-encoding/
-            </link>
-            <description>
-                The default encoding used for the audit log file is UTF-8. Starting from WildFly 29, you can change the default encoding by specifying encoding attribute in file-audit-log, periodic-rotating-file-audit-log or size-rotating-file-audit-log elements in the Elytron subsystem. Possible values are: UTF-8, UTF-16BE, UTF-16LE, UTF-16, US-ASCII or ISO-8859-1. &lt;file-audit-log name="local-file" path="audit.log" relative-to="jboss.server.log.dir" synchronized="false"...
-            </description>
-            <pubDate>Tue, 14 Nov 2023 00:00:00 +0000</pubDate>
-            <guid>
-                https://wildfly-security.github.io/wildfly-elytron/blog/specify-file-audit-log-encoding/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Securing WildFly Apps with OIDC on OpenShift</title>
-            <link>
-                https://wildfly-security.github.io/wildfly-elytron/blog/securing-wildfly-apps-oidc-openshift/
-            </link>
-            <description>
-                You can secure your WildFly applications deployed on OpenShift with OpenID Connect (OIDC). By using OIDC to secure applications, you delegate authentication to OIDC providers. This guide shows how to secure an example application deployed to WildFly on OpenShift with OIDC using Keycloak as the OIDC provider. Prerequisites Example Application...
-            </description>
-            <pubDate>Wed, 08 Nov 2023 00:00:00 +0000</pubDate>
-            <guid>
-                https://wildfly-security.github.io/wildfly-elytron/blog/securing-wildfly-apps-oidc-openshift/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Adding Support for Integrity Checking to an Existing Filesystem Realm</title>
-            <link>
-                https://wildfly-security.github.io/wildfly-elytron/blog/filesystem-integrity-elytron-tool/
-            </link>
-            <description>
-                WildFly 27 included the ability to add integrity checking support to filesystem realms. This uses an asymmetric key pair that has a private and public key to secure the filesystem realm. In the filesystem realm, each identity will be signed using the private key. This makes it possible to verify...
-            </description>
-            <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
-            <guid>
-                https://wildfly-security.github.io/wildfly-elytron/blog/filesystem-integrity-elytron-tool/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Open Source Day 2023 Recap</title>
-            <link>
-                https://wildfly-security.github.io/wildfly-elytron/blog/ghc23-osd-recap/
-            </link>
-            <description>
-                Last month, the WildFly Elytron team had the great pleasure of participating in Open Source Day, an all-day hackathon that took place as part of the 2023 Grace Hopper Celebration. This was the fourth time that the WildFly Elytron team has participated in this event. It is always an exciting...
-            </description>
-            <pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate>
-            <guid>
-                https://wildfly-security.github.io/wildfly-elytron/blog/ghc23-osd-recap/
             </guid>
         </item>
         
